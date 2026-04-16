@@ -1,5 +1,5 @@
 /** 질문 단위 스텝 */
-export const STEPS = ["name", "summary", "category"] as const;
+export const STEPS = ["name", "summary", "category", "image"] as const;
 
 export type Step = (typeof STEPS)[number];
 
@@ -20,6 +20,7 @@ export const STEP_PHASE: Record<Step, Phase> = {
   name: "basic",
   summary: "basic",
   category: "basic",
+  image: "image",
 };
 
 export interface Category {
@@ -59,4 +60,5 @@ export interface TestCreateFormData {
   summary: string;
   description: string;
   categories: CategoryId[];
+  imageFile: File | null;
 }

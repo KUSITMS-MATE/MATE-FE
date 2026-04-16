@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { TextField } from "@toss/tds-mobile";
 import { FunnelLayout, type CTAMode } from "./FunnelLayout";
 import { CategorySelectSheet } from "./CategorySelectSheet";
+import { TestImageStep } from "./TestImageStep";
 import { useFunnel } from "../model/useFunnel";
 import { useTestCreateForm, type TestCreateFormStore } from "../model/useTestCreateForm";
 import { STEPS, CATEGORIES } from "../model/types";
@@ -12,6 +13,7 @@ const STEP_CONFIG: Record<Step, { label: string; placeholder: string; maxLength?
   name: { label: "테스트 이름", placeholder: "테스트 이름" },
   summary: { label: "테스트 한줄 소개", placeholder: "테스트 한줄 소개", maxLength: 60, help: "최대 60자" },
   category: { label: "카테고리", placeholder: "" },
+  image: { label: "테스트 이미지", placeholder: "" },
 };
 
 function getStepValue(step: Step, form: TestCreateFormStore): string {
@@ -37,7 +39,7 @@ function setStepValue(step: Step, form: TestCreateFormStore, value: string) {
 }
 
 export function TestCreateFunnel() {
-  const funnel = useFunnel();
+  const funnel = useFunnel("image");
   const form = useTestCreateForm();
   const [isFocused, setIsFocused] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
@@ -62,6 +64,7 @@ export function TestCreateFunnel() {
   const isAllComplete = form.name.trim().length > 0 && form.summary.trim().length > 0 && form.categories.length > 0;
 
   const ctaMode: CTAMode = (() => {
+    if (funnel.step === "image") return "double";
     if (isFocused) return "confirm";
     if (!hasInteracted) return "double";
     if (funnel.step === "category" && isAllComplete) return "double";
@@ -83,6 +86,11 @@ export function TestCreateFunnel() {
   return (
     <>
       <FunnelLayout onConfirm={funnel.next} onNext={funnel.next} currentStep={funnel.step} ctaMode={ctaMode} isConfirmDisabled={isConfirmDisabled} isNextDisabled={!isAllComplete}>
+        {funnel.step === "image" ? (
+          <motion.div key="image" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2 }}>
+            <TestImageStep />
+          </motion.div>
+        ) : (
         <div className="pt-6">
           {/* 현재 활성 입력 */}
           {funnel.step === "category" ? (
@@ -113,6 +121,7 @@ export function TestCreateFunnel() {
 
           {/* 완료된 항목들 (최신순으로 위에) */}
           {[...completedSteps].reverse().map((step) => {
+            if (step === "image") return null;
             if (step === "category") {
               return <TextField.Button key={step} variant="line" label="카테고리" value={categoryDisplayValue} placeholder="카테고리" onClick={() => setIsCategorySheetOpen(true)} />;
             }
@@ -128,6 +137,7 @@ export function TestCreateFunnel() {
             );
           })}
         </div>
+        )}
       </FunnelLayout>
 
       {/* 카테고리 선택 시트 */}

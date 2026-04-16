@@ -8,6 +8,7 @@ export interface TestCreateFormStore extends TestCreateFormData {
   setDescription: (description: string) => void;
   setCategories: (categories: CategoryId[]) => void;
   toggleCategory: (category: CategoryId) => void;
+  setImageFile: (imageFile: File | null) => void;
   reset: () => void;
 }
 
@@ -16,6 +17,7 @@ const initialState: TestCreateFormData = {
   summary: '',
   description: '',
   categories: [],
+  imageFile: null,
 };
 
 export const useTestCreateForm = create<TestCreateFormStore>((set) => ({
@@ -24,6 +26,7 @@ export const useTestCreateForm = create<TestCreateFormStore>((set) => ({
   setSummary: (summary) => set({ summary }),
   setDescription: (description) => set({ description }),
   setCategories: (categories) => set({ categories }),
+  setImageFile: (imageFile) => set({ imageFile }),
   toggleCategory: (category) =>
     set((state) => {
       const isSelected = state.categories.includes(category);

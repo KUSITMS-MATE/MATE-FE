@@ -162,6 +162,36 @@
   },
   "hotPaths": [
     {
+      "path": "src/features/test-create/ui/TestCreateFunnel.tsx",
+      "accessCount": 13,
+      "lastAccessed": 1776338523885,
+      "type": "file"
+    },
+    {
+      "path": "src/features/test-create/model/types.ts",
+      "accessCount": 5,
+      "lastAccessed": 1776338292345,
+      "type": "file"
+    },
+    {
+      "path": "src/features/test-create/ui/FunnelLayout.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1776338236532,
+      "type": "file"
+    },
+    {
+      "path": "src/features/test-create/model/useTestCreateForm.ts",
+      "accessCount": 2,
+      "lastAccessed": 1776338300290,
+      "type": "file"
+    },
+    {
+      "path": "src/features/test-create/ui/TestImageStep.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1776338519525,
+      "type": "file"
+    },
+    {
       "path": "package.json",
       "accessCount": 1,
       "lastAccessed": 1776336101187,
@@ -172,6 +202,30 @@
       "accessCount": 1,
       "lastAccessed": 1776336266002,
       "type": "directory"
+    },
+    {
+      "path": "src/features/test-create/model/useFunnel.ts",
+      "accessCount": 1,
+      "lastAccessed": 1776338245129,
+      "type": "file"
+    },
+    {
+      "path": "src/routes/__root.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1776338446269,
+      "type": "file"
+    },
+    {
+      "path": "src/routes/index.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1776338446455,
+      "type": "file"
+    },
+    {
+      "path": "src/App.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1776338449201,
+      "type": "file"
     }
   ],
   "userDirectives": []
