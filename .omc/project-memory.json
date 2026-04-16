@@ -174,6 +174,12 @@
       "type": "file"
     },
     {
+      "path": "src/features/test-create/ui/TestImageStep.tsx",
+      "accessCount": 4,
+      "lastAccessed": 1776338950085,
+      "type": "file"
+    },
+    {
       "path": "src/features/test-create/ui/FunnelLayout.tsx",
       "accessCount": 2,
       "lastAccessed": 1776338236532,
@@ -183,12 +189,6 @@
       "path": "src/features/test-create/model/useTestCreateForm.ts",
       "accessCount": 2,
       "lastAccessed": 1776338300290,
-      "type": "file"
-    },
-    {
-      "path": "src/features/test-create/ui/TestImageStep.tsx",
-      "accessCount": 2,
-      "lastAccessed": 1776338519525,
       "type": "file"
     },
     {
