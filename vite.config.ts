@@ -7,7 +7,10 @@ import path from "path";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    tanstackRouter({ routesDirectory: "./src/routes", generatedRouteTree: "./src/routeTree.gen.ts" }),
+    tanstackRouter({
+      routesDirectory: "./src/routes",
+      generatedRouteTree: "./src/routeTree.gen.ts",
+    }),
     tailwindcss(),
     react(),
   ],
@@ -18,6 +21,5 @@ export default defineConfig({
   },
   server: {
     host: true,
-    hmr: false,
   },
 });
