@@ -15,6 +15,9 @@ export default defineConfig({
       build: "tsc -b && vite build",
     },
   },
-  permissions: [],
+  permissions: [
+    { name: "camera", access: "access" },
+    { name: "photoLibrary", access: "read" },
+  ],
   outdir: "dist",
 });
