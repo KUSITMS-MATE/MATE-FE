@@ -42,7 +42,7 @@ function setStepValue(step: InputStep, form: TestCreateFormStore, value: string)
 }
 
 export function TestCreateFunnel() {
-  const funnel = useFunnel("image");
+  const funnel = useFunnel();
   const form = useTestCreateForm();
   const [isFocused, setIsFocused] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);

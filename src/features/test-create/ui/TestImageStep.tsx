@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Top, Asset, Text } from "@toss/tds-mobile";
 import { adaptive } from "@toss/tds-colors";
-import { openCamera, fetchAlbumPhotos } from "@apps-in-toss/web-framework";
+import { openCamera, fetchAlbumPhotos, OpenCameraPermissionError, FetchAlbumPhotosPermissionError } from "@apps-in-toss/web-framework";
 import { PhotoSelectSheet } from "./PhotoSelectSheet";
 
 const MAX_IMAGES = 10;
@@ -21,8 +21,12 @@ export function TestImageStep() {
     try {
       const response = await openCamera({ base64: true, maxWidth: 1280 });
       addImages([`data:image/jpeg;base64,${response.dataUri}`]);
-    } catch {
-      // 권한 거부 또는 취소
+    } catch (error) {
+      if (error instanceof OpenCameraPermissionError) {
+        await openCamera.openPermissionDialog();
+      } else {
+        console.error("[handleCamera] error:", error);
+      }
     }
   };
 
@@ -32,8 +36,12 @@ export function TestImageStep() {
       if (remaining <= 0) return;
       const response = await fetchAlbumPhotos({ base64: true, maxWidth: 1280, maxCount: remaining });
       addImages(response.map((img) => `data:image/jpeg;base64,${img.dataUri}`));
-    } catch {
-      // 권한 거부 또는 취소
+    } catch (error) {
+      if (error instanceof FetchAlbumPhotosPermissionError) {
+        await fetchAlbumPhotos.openPermissionDialog();
+      } else {
+        console.error("[handleAlbum] error:", error);
+      }
     }
   };
 
@@ -54,7 +62,6 @@ export function TestImageStep() {
         />
 
         <div className="px-5 flex flex-wrap gap-2">
-          {/* 선택된 이미지 썸네일 */}
           {imageUris.map((uri, index) => (
             <div
               key={index}
@@ -70,7 +77,6 @@ export function TestImageStep() {
             </div>
           ))}
 
-          {/* 추가 버튼 */}
           {imageUris.length < MAX_IMAGES && (
             <button
               type="button"

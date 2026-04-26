@@ -9,7 +9,13 @@ interface PhotoSelectSheetProps {
 
 export function PhotoSelectSheet({ open, onClose, onCamera, onAlbum }: PhotoSelectSheetProps) {
   return (
-    <BottomSheet open={open} onClose={onClose}>
+    <BottomSheet
+      open={open}
+      onClose={onClose}
+      onExited={() => {
+        // 시트가 완전히 닫힌 후 액션 실행은 TestImageStep에서 처리
+      }}
+    >
       <ListRow
         as="button"
         className="w-full"
@@ -22,11 +28,11 @@ export function PhotoSelectSheet({ open, onClose, onCamera, onAlbum }: PhotoSele
             style={{ aspectRatio: "1/1" }}
           />
         }
-        contents={<ListRow.Texts type="1RowTypeA" top="카메라로 찍기" />}
+        contents={<ListRow.Texts type="1RowTypeA" top="사진 촬영하기" />}
         verticalPadding="large"
         onClick={() => {
           onClose();
-          onCamera();
+          setTimeout(onCamera, 300);
         }}
       />
       <ListRow
@@ -41,11 +47,11 @@ export function PhotoSelectSheet({ open, onClose, onCamera, onAlbum }: PhotoSele
             ratio="1/1"
           />
         }
-        contents={<ListRow.Texts type="1RowTypeA" top="앨범에서 선택" />}
+        contents={<ListRow.Texts type="1RowTypeA" top="앨범에서 선택하기" />}
         verticalPadding="large"
         onClick={() => {
           onClose();
-          onAlbum();
+          setTimeout(onAlbum, 300);
         }}
       />
       <Spacing size={24} />

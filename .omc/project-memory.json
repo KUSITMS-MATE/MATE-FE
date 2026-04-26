@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1776335828141,
+  "lastScanned": 1777179191846,
   "projectRoot": "/Users/hongseogju/Desktop/MATE-FE",
   "techStack": {
     "languages": [
@@ -33,6 +33,11 @@
         "category": "frontend"
       },
       {
+        "name": "@playwright/test",
+        "version": "1.59.1",
+        "category": "testing"
+      },
+      {
         "name": "vite",
         "version": "8.0.1",
         "category": "build"
@@ -60,7 +65,10 @@
       "preview": "doppler run -- vite preview",
       "preview:plain": "vite preview",
       "deploy": "doppler run -- ait deploy",
-      "deploy:plain": "ait deploy"
+      "deploy:plain": "ait deploy",
+      "test:e2e": "playwright test",
+      "test:e2e:ui": "playwright test --ui",
+      "test:e2e:debug": "playwright test --debug"
     }
   },
   "conventions": {
@@ -88,7 +96,7 @@
       "path": "dist",
       "purpose": "Distribution/build output",
       "fileCount": 3,
-      "lastAccessed": 1776335827839,
+      "lastAccessed": 1777179191793,
       "keyFiles": [
         "favicon.svg",
         "icons.svg",
@@ -99,17 +107,28 @@
       "path": "docs",
       "purpose": "Documentation",
       "fileCount": 2,
-      "lastAccessed": 1776335827939,
+      "lastAccessed": 1777179191795,
       "keyFiles": [
         "DOPPLER.md",
         "TEAM_ONBOARDING.md"
+      ]
+    },
+    "e2e": {
+      "path": "e2e",
+      "purpose": null,
+      "fileCount": 3,
+      "lastAccessed": 1777179191818,
+      "keyFiles": [
+        "fixtures.ts",
+        "home.spec.ts",
+        "profile.spec.ts"
       ]
     },
     "public": {
       "path": "public",
       "purpose": "Public files",
       "fileCount": 2,
-      "lastAccessed": 1776335828088,
+      "lastAccessed": 1777179191819,
       "keyFiles": [
         "favicon.svg",
         "icons.svg"
@@ -118,8 +137,8 @@
     "src": {
       "path": "src",
       "purpose": "Source code",
-      "fileCount": 5,
-      "lastAccessed": 1776335828103,
+      "fileCount": 6,
+      "lastAccessed": 1777179191819,
       "keyFiles": [
         "App.css",
         "App.tsx",
@@ -128,11 +147,18 @@
         "providers.tsx"
       ]
     },
+    "test-results": {
+      "path": "test-results",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1777179191820,
+      "keyFiles": []
+    },
     "dist/assets": {
       "path": "dist/assets",
       "purpose": "Static assets",
       "fileCount": 2,
-      "lastAccessed": 1776335828122,
+      "lastAccessed": 1777179191822,
       "keyFiles": [
         "index-BKZpACbR.js",
         "index-C6QjICAY.css"
@@ -142,7 +168,7 @@
       "path": "src/assets",
       "purpose": "Static assets",
       "fileCount": 3,
-      "lastAccessed": 1776335828126,
+      "lastAccessed": 1777179191824,
       "keyFiles": [
         "hero.png",
         "react.svg",
@@ -152,81 +178,15 @@
     "src/routes": {
       "path": "src/routes",
       "purpose": "Route handlers",
-      "fileCount": 2,
-      "lastAccessed": 1776335828126,
+      "fileCount": 3,
+      "lastAccessed": 1777179191824,
       "keyFiles": [
         "__root.tsx",
-        "index.tsx"
+        "index.tsx",
+        "test-create.tsx"
       ]
     }
   },
-  "hotPaths": [
-    {
-      "path": "src/features/test-create/ui/TestCreateFunnel.tsx",
-      "accessCount": 13,
-      "lastAccessed": 1776338523885,
-      "type": "file"
-    },
-    {
-      "path": "src/features/test-create/model/types.ts",
-      "accessCount": 5,
-      "lastAccessed": 1776338292345,
-      "type": "file"
-    },
-    {
-      "path": "src/features/test-create/ui/TestImageStep.tsx",
-      "accessCount": 4,
-      "lastAccessed": 1776338950085,
-      "type": "file"
-    },
-    {
-      "path": "src/features/test-create/ui/FunnelLayout.tsx",
-      "accessCount": 2,
-      "lastAccessed": 1776338236532,
-      "type": "file"
-    },
-    {
-      "path": "src/features/test-create/model/useTestCreateForm.ts",
-      "accessCount": 2,
-      "lastAccessed": 1776338300290,
-      "type": "file"
-    },
-    {
-      "path": "package.json",
-      "accessCount": 1,
-      "lastAccessed": 1776336101187,
-      "type": "file"
-    },
-    {
-      "path": "",
-      "accessCount": 1,
-      "lastAccessed": 1776336266002,
-      "type": "directory"
-    },
-    {
-      "path": "src/features/test-create/model/useFunnel.ts",
-      "accessCount": 1,
-      "lastAccessed": 1776338245129,
-      "type": "file"
-    },
-    {
-      "path": "src/routes/__root.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1776338446269,
-      "type": "file"
-    },
-    {
-      "path": "src/routes/index.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1776338446455,
-      "type": "file"
-    },
-    {
-      "path": "src/App.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1776338449201,
-      "type": "file"
-    }
-  ],
+  "hotPaths": [],
   "userDirectives": []
 }
