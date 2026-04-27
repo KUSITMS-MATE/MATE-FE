@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TextField } from "@toss/tds-mobile";
 import { FunnelLayout, type CTAMode } from "./FunnelLayout";
@@ -44,13 +44,14 @@ function setStepValue(step: InputStep, form: TestCreateFormStore, value: string)
 }
 
 export function TestCreateFunnel() {
-  const funnel = useFunnel("image");
+  const funnel = useFunnel("service");
   const form = useTestCreateForm();
   const [isFocused, setIsFocused] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const [isCategorySheetOpen, setIsCategorySheetOpen] = useState(false);
   const [showServiceDescription, setShowServiceDescription] = useState(false);
   const [isServiceIntroSheetOpen, setIsServiceIntroSheetOpen] = useState(false);
+  const [hasTestImages, setHasTestImages] = useState(false);
   const blurTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const categoryDisplayValue = form.categories
@@ -108,12 +109,27 @@ export function TestCreateFunnel() {
     }, 100);
   };
 
+  const dismissKeyboard = () => {
+    const active = document.activeElement;
+    if (active instanceof HTMLElement) {
+      active.blur();
+    }
+    setIsFocused(false);
+  };
+
+  const handleHasImagesChange = useCallback((hasImages: boolean) => {
+    setHasTestImages(hasImages);
+  }, []);
+
   return (
     <>
       <FunnelLayout
         onConfirm={() => {
-          if (funnel.step === "service" && !showServiceDescription) {
-            setShowServiceDescription(true);
+          if (funnel.step === "service") {
+            dismissKeyboard();
+            if (!showServiceDescription && form.serviceName.trim().length > 0) {
+              setShowServiceDescription(true);
+            }
           } else {
             funnel.next();
           }
@@ -132,7 +148,13 @@ export function TestCreateFunnel() {
         currentStep={funnel.step}
         ctaMode={ctaMode}
         isConfirmDisabled={isConfirmDisabled}
-        isNextDisabled={funnel.step === "service" ? form.serviceName.trim().length === 0 : !isAllComplete}
+        isNextDisabled={
+          funnel.step === "service"
+            ? form.serviceName.trim().length === 0
+            : funnel.step === "image"
+              ? !hasTestImages
+              : !isAllComplete
+        }
         cancelLabel={funnel.step === "service" ? "이전" : "취소"}
         isSubmitDisabled
         submitLabel="테스트 만들기"
@@ -141,7 +163,7 @@ export function TestCreateFunnel() {
           <TestRegisterStep />
         ) : funnel.step === "image" ? (
           <motion.div key="image" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2 }}>
-            <TestImageStep />
+            <TestImageStep onHasImagesChange={handleHasImagesChange} />
           </motion.div>
         ) : funnel.step === "service" ? (
           <motion.div key="service" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2 }}>

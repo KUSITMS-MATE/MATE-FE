@@ -10,7 +10,11 @@ const MAX_SCROLL_SPEED = 8;
 
 const PREVIEW_SURFACE = "var(--token-tds-color-white, var(--adaptiveBackground, #ffffff))";
 
-export function TestImageStep() {
+interface TestImageStepProps {
+  onHasImagesChange?: (hasImages: boolean) => void;
+}
+
+export function TestImageStep({ onHasImagesChange }: TestImageStepProps) {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [previewIndex, setPreviewIndex] = useState<number | null>(null);
   const [imageUris, setImageUris] = useState<string[]>([]);
@@ -31,6 +35,10 @@ export function TestImageStep() {
     document.addEventListener("touchmove", preventScroll, { passive: false });
     return () => document.removeEventListener("touchmove", preventScroll);
   }, []);
+
+  useEffect(() => {
+    onHasImagesChange?.(imageUris.length > 0);
+  }, [imageUris.length, onHasImagesChange]);
 
   const addImages = (uris: string[]) => {
     setImageUris((prev) => {
@@ -185,6 +193,10 @@ export function TestImageStep() {
     }
   };
 
+  const handleTouchCancel = () => {
+    handleTouchEnd();
+  };
+
   // 드래그 중: draggingIndex 아이템을 dragOverIndex 위치로 시각적으로 재배열
   // ghost 아이템이 반투명하게 미리보기 위치를 표시, 나머지 아이템은 자동으로 밀림
   const visualItems =
@@ -258,6 +270,8 @@ export function TestImageStep() {
               onTouchStart={handleTouchStart(item.originalIndex)}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
+              onTouchCancel={handleTouchCancel}
+              onContextMenu={(e) => e.preventDefault()}
               style={{
                 position: "relative",
                 width: 88,
@@ -285,6 +299,8 @@ export function TestImageStep() {
                   <img
                     src={item.uri}
                     alt={`선택된 이미지 ${item.originalIndex + 1}`}
+                    draggable={false}
+                    onDragStart={(e) => e.preventDefault()}
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
                   />
                 </div>
