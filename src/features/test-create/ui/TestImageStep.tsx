@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Top, Asset, Text, Badge } from "@toss/tds-mobile";
+import { Top, Asset, Text, Badge, BottomSheet, ListRow, Checkbox } from "@toss/tds-mobile";
 import { adaptive } from "@toss/tds-colors";
 import { openCamera, fetchAlbumPhotos, OpenCameraPermissionError, FetchAlbumPhotosPermissionError } from "@apps-in-toss/web-framework";
 import { PhotoSelectSheet } from "./PhotoSelectSheet";
@@ -8,8 +8,11 @@ const MAX_IMAGES = 10;
 const EDGE_ZONE = 60;
 const MAX_SCROLL_SPEED = 8;
 
+const PREVIEW_SURFACE = "var(--token-tds-color-white, var(--adaptiveBackground, #ffffff))";
+
 export function TestImageStep() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [previewIndex, setPreviewIndex] = useState<number | null>(null);
   const [imageUris, setImageUris] = useState<string[]>([]);
   const [draggingIndex, setDraggingIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
@@ -38,6 +41,26 @@ export function TestImageStep() {
 
   const removeImage = (index: number) => {
     setImageUris((prev) => prev.filter((_, i) => i !== index));
+    setPreviewIndex((prev) => {
+      if (prev === null) return null;
+      if (prev === index) return null;
+      if (prev > index) return prev - 1;
+      return prev;
+    });
+  };
+
+  const previewUri = previewIndex !== null ? imageUris[previewIndex] : null;
+  const isPreviewRepresentative = previewIndex !== null && previewIndex === 0;
+
+  const setPreviewedImageAsRepresentative = () => {
+    if (previewIndex === null || previewIndex === 0) return;
+    setImageUris((prev) => {
+      const next = [...prev];
+      const [item] = next.splice(previewIndex, 1);
+      next.unshift(item);
+      return next;
+    });
+    setPreviewIndex(0);
   };
 
   const handleCamera = async () => {
@@ -245,20 +268,27 @@ export function TestImageStep() {
                 transition: "opacity 0.15s",
               }}
             >
-              <div
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  borderRadius: 16,
-                  overflow: "hidden",
-                }}
+              <button
+                type="button"
+                className="block h-full w-full cursor-pointer border-0 bg-transparent p-0"
+                onClick={() => setPreviewIndex(item.originalIndex)}
+                aria-label={`이미지 ${item.originalIndex + 1} 미리보기`}
               >
-                <img
-                  src={item.uri}
-                  alt={`선택된 이미지 ${item.originalIndex + 1}`}
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-              </div>
+                <div
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    borderRadius: 16,
+                    overflow: "hidden",
+                  }}
+                >
+                  <img
+                    src={item.uri}
+                    alt={`선택된 이미지 ${item.originalIndex + 1}`}
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                </div>
+              </button>
               {!item.isGhost && (
                 <div
                   style={{
@@ -282,7 +312,10 @@ export function TestImageStep() {
                   )}
                   <button
                     type="button"
-                    onClick={() => removeImage(item.originalIndex)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      removeImage(item.originalIndex);
+                    }}
                     style={{
                       display: "flex",
                       background: "none",
@@ -314,6 +347,77 @@ export function TestImageStep() {
         onCamera={handleCamera}
         onAlbum={handleAlbum}
       />
+
+      <BottomSheet
+        header={<BottomSheet.Header>이미지 미리보기</BottomSheet.Header>}
+        headerDescription={
+          <BottomSheet.HeaderDescription>테스트 상세 화면에 이렇게 보여요</BottomSheet.HeaderDescription>
+        }
+        open={previewIndex !== null}
+        onClose={() => setPreviewIndex(null)}
+        cta={
+          <BottomSheet.CTA color="dark" variant="weak" disabled={false} onClick={() => setPreviewIndex(null)}>
+            닫기
+          </BottomSheet.CTA>
+        }
+      >
+        {previewUri !== null && (
+          <>
+            <div
+              style={{
+                width: "100%",
+                maxWidth: 355,
+                margin: "0 auto",
+                backgroundColor: PREVIEW_SURFACE,
+                padding: 12,
+                boxSizing: "border-box",
+              }}
+            >
+              <div
+                style={{
+                  width: "100%",
+                  backgroundColor: PREVIEW_SURFACE,
+                }}
+              >
+                <div
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    aspectRatio: "16 / 9",
+                    borderRadius: 16,
+                    overflow: "hidden",
+                    backgroundColor: adaptive.grey100,
+                  }}
+                >
+                  <img
+                    src={previewUri}
+                    alt=""
+                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                </div>
+              </div>
+            </div>
+            <ListRow
+              as="button"
+              className="w-full text-left"
+              role="checkbox"
+              aria-checked={isPreviewRepresentative}
+              onClick={() => {
+                if (!isPreviewRepresentative) setPreviewedImageAsRepresentative();
+              }}
+              contents={
+                <ListRow.Texts
+                  type="1RowTypeA"
+                  top="대표 이미지로 설정"
+                  topProps={{ color: adaptive.grey700 }}
+                />
+              }
+              right={<Checkbox.Line size={24} checked={isPreviewRepresentative} readOnly />}
+              verticalPadding="large"
+            />
+          </>
+        )}
+      </BottomSheet>
     </>
   );
 }
