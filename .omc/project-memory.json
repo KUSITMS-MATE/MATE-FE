@@ -190,8 +190,20 @@
   "hotPaths": [
     {
       "path": "src/features/test-create/ui/TestCreateFunnel.tsx",
-      "accessCount": 44,
-      "lastAccessed": 1777204179781,
+      "accessCount": 46,
+      "lastAccessed": 1777256742961,
+      "type": "file"
+    },
+    {
+      "path": "src/features/test-create/ui/ServiceDescriptionNudgeSheet.tsx",
+      "accessCount": 8,
+      "lastAccessed": 1777256666104,
+      "type": "file"
+    },
+    {
+      "path": "src/features/test-create/ui/FunnelLayout.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1777256719371,
       "type": "file"
     },
     {
@@ -201,21 +213,9 @@
       "type": "file"
     },
     {
-      "path": "src/features/test-create/ui/FunnelLayout.tsx",
-      "accessCount": 4,
-      "lastAccessed": 1777203340648,
-      "type": "file"
-    },
-    {
       "path": "src/features/test-create/model/useTestCreateForm.ts",
       "accessCount": 3,
       "lastAccessed": 1777202617727,
-      "type": "file"
-    },
-    {
-      "path": "src/features/test-create/ui/ServiceDescriptionNudgeSheet.tsx",
-      "accessCount": 3,
-      "lastAccessed": 1777204063874,
       "type": "file"
     },
     {
@@ -246,6 +246,12 @@
       "path": "src/features/test-create/ui/ServiceIntroSheet.tsx",
       "accessCount": 1,
       "lastAccessed": 1777203978219,
+      "type": "file"
+    },
+    {
+      "path": "src/features/test-create/ui/TestRegisterStep.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1777256705578,
       "type": "file"
     }
   ],

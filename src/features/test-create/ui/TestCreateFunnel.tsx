@@ -78,7 +78,7 @@ export function TestCreateFunnel() {
     if (funnel.step === "register") return "submit";
     if (funnel.step === "image") return "double";
     if (funnel.step === "service" && showServiceDescription) return "double";
-    if (isFocused) return "confirm";
+    if (isFocused && funnel.step !== "service") return "confirm";
     if (funnel.step === "service") return "double";
     if (!hasInteracted) return "double";
     if (funnel.step === "category" && isAllComplete) return "double";

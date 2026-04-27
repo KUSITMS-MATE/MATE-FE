@@ -39,7 +39,7 @@ export function ServiceDescriptionNudgeSheet({ open, onClose, onSkip }: ServiceD
         verticalPadding="large"
       />
       <ListRow
-        left={<ListRow.AssetImage src="https://static.toss.im/2d-emojis/png/4x/u1F913.png" shape="original" />}
+        left={<ListRow.AssetIcon size="xsmall" shape="original" url="https://static.toss.im/2d-emojis/png/4x/u1F913.png" />}
         contents={
           <ListRow.Texts
             type="2RowTypeF"
