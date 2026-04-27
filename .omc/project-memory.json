@@ -190,20 +190,32 @@
   "hotPaths": [
     {
       "path": "src/features/test-create/ui/TestCreateFunnel.tsx",
-      "accessCount": 47,
-      "lastAccessed": 1777256852463,
+      "accessCount": 56,
+      "lastAccessed": 1777260955565,
+      "type": "file"
+    },
+    {
+      "path": "src/features/test-create/ui/ServiceDescriptionStep.tsx",
+      "accessCount": 12,
+      "lastAccessed": 1777260955528,
+      "type": "file"
+    },
+    {
+      "path": "src/features/test-create/ui/TestImageStep.tsx",
+      "accessCount": 11,
+      "lastAccessed": 1777260185199,
+      "type": "file"
+    },
+    {
+      "path": "src/features/test-create/ui/FunnelLayout.tsx",
+      "accessCount": 11,
+      "lastAccessed": 1777261327107,
       "type": "file"
     },
     {
       "path": "src/features/test-create/ui/ServiceDescriptionNudgeSheet.tsx",
       "accessCount": 8,
       "lastAccessed": 1777256666104,
-      "type": "file"
-    },
-    {
-      "path": "src/features/test-create/ui/FunnelLayout.tsx",
-      "accessCount": 5,
-      "lastAccessed": 1777256719371,
       "type": "file"
     },
     {
@@ -219,15 +231,15 @@
       "type": "file"
     },
     {
-      "path": "src/features/test-create/ui/ServiceDescriptionStep.tsx",
-      "accessCount": 2,
-      "lastAccessed": 1777202684401,
-      "type": "file"
-    },
-    {
       "path": "granite.config.ts",
       "accessCount": 2,
       "lastAccessed": 1777202899279,
+      "type": "file"
+    },
+    {
+      "path": "src/index.css",
+      "accessCount": 2,
+      "lastAccessed": 1777259872240,
       "type": "file"
     },
     {
@@ -252,6 +264,12 @@
       "path": "src/features/test-create/ui/TestRegisterStep.tsx",
       "accessCount": 1,
       "lastAccessed": 1777256705578,
+      "type": "file"
+    },
+    {
+      "path": "src/features/test-create/ui/PhotoSelectSheet.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1777259749616,
       "type": "file"
     }
   ],

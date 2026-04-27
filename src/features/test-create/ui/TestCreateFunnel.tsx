@@ -44,7 +44,7 @@ function setStepValue(step: InputStep, form: TestCreateFormStore, value: string)
 }
 
 export function TestCreateFunnel() {
-  const funnel = useFunnel("service");
+  const funnel = useFunnel("image");
   const form = useTestCreateForm();
   const [isFocused, setIsFocused] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
@@ -77,8 +77,8 @@ export function TestCreateFunnel() {
     if (isCategorySheetOpen) return "hidden";
     if (funnel.step === "register") return "submit";
     if (funnel.step === "image") return "double";
+    if (isFocused) return "confirm";
     if (funnel.step === "service" && showServiceDescription) return "double";
-    if (isFocused && funnel.step !== "service") return "confirm";
     if (funnel.step === "service") return "double";
     if (!hasInteracted) return "double";
     if (funnel.step === "category" && isAllComplete) return "double";
@@ -149,6 +149,11 @@ export function TestCreateFunnel() {
               showDescriptionField={showServiceDescription}
               onFocus={handleFocus}
               onBlur={handleBlur}
+              onServiceNameConfirm={() => {
+                if (!showServiceDescription && form.serviceName.trim().length > 0) {
+                  setShowServiceDescription(true);
+                }
+              }}
             />
           </motion.div>
         ) : (

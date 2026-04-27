@@ -6,9 +6,10 @@ interface TestDescriptionStepProps {
   showDescriptionField: boolean;
   onFocus: () => void;
   onBlur: () => void;
+  onServiceNameConfirm?: () => void;
 }
 
-export function ServiceDescriptionStep({ showDescriptionField, onFocus, onBlur }: TestDescriptionStepProps) {
+export function ServiceDescriptionStep({ showDescriptionField, onFocus, onBlur, onServiceNameConfirm }: TestDescriptionStepProps) {
   const { serviceName, setServiceName, description, setDescription } = useTestCreateForm();
 
   return (
@@ -41,6 +42,7 @@ export function ServiceDescriptionStep({ showDescriptionField, onFocus, onBlur }
           onChange={(e) => setDescription(e.target.value)}
           onFocus={onFocus}
           onBlur={onBlur}
+          enterKeyHint="done"
         />
       ) : null}
       <TextField.Clearable
@@ -53,6 +55,8 @@ export function ServiceDescriptionStep({ showDescriptionField, onFocus, onBlur }
         onClear={() => setServiceName("")}
         onFocus={onFocus}
         onBlur={onBlur}
+        onKeyDown={(e) => { if (e.key === "Enter") onServiceNameConfirm?.(); }}
+        enterKeyHint="done"
       />
     </div>
   );

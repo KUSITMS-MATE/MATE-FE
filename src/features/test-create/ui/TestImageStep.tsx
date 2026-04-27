@@ -17,6 +17,10 @@ export function TestImageStep() {
     });
   };
 
+  const removeImage = (index: number) => {
+    setImageUris((prev) => prev.filter((_, i) => i !== index));
+  };
+
   const handleCamera = async () => {
     try {
       const response = await openCamera({ base64: true, maxWidth: 1280 });
@@ -61,22 +65,7 @@ export function TestImageStep() {
           }
         />
 
-        <div className="px-5 flex flex-wrap gap-2">
-          {imageUris.map((uri, index) => (
-            <div
-              key={index}
-              style={{
-                width: 88,
-                height: 88,
-                borderRadius: 16,
-                overflow: "hidden",
-                flexShrink: 0,
-              }}
-            >
-              <img src={uri} alt={`선택된 이미지 ${index + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            </div>
-          ))}
-
+        <div className="px-5 flex flex-nowrap gap-2 overflow-x-auto scrollbar-hide">
           {imageUris.length < MAX_IMAGES && (
             <button
               type="button"
@@ -113,6 +102,58 @@ export function TestImageStep() {
               </div>
             </button>
           )}
+
+          {imageUris.map((uri, index) => (
+            <div
+              key={index}
+              style={{
+                position: "relative",
+                width: 88,
+                height: 88,
+                flexShrink: 0,
+              }}
+            >
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: 16,
+                  overflow: "hidden",
+                  padding: 6,
+                  boxShadow: "inset 0 0 0 1px var(--token-tds-color-grey-opacity-100, var(--adaptiveGreyOpacity100, rgba(2,32,71,0.05)))",
+                }}
+              >
+                <img
+                  src={uri}
+                  alt={`선택된 이미지 ${index + 1}`}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: 10 }}
+                />
+              </div>
+              <button
+                type="button"
+                onClick={() => removeImage(index)}
+                style={{
+                  position: "absolute",
+                  top: -6,
+                  right: -6,
+                  display: "flex",
+                  background: "none",
+                  border: "none",
+                  padding: 0,
+                  cursor: "pointer",
+                }}
+                aria-label={`이미지 ${index + 1} 삭제`}
+              >
+                <Asset.Icon
+                  frameShape={Asset.frameShape.CircleXSmall}
+                  backgroundColor={adaptive.greyOpacity600}
+                  name="icon-sweetshop-x-white"
+                  scale={0.66}
+                  aria-hidden={true}
+                />
+              </button>
+            </div>
+          ))}
         </div>
       </div>
 
