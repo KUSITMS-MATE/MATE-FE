@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1777179191846,
+  "lastScanned": 1777352497550,
   "projectRoot": "/Users/hongseogju/Desktop/MATE-FE",
   "techStack": {
     "languages": [
@@ -96,7 +96,7 @@
       "path": "dist",
       "purpose": "Distribution/build output",
       "fileCount": 3,
-      "lastAccessed": 1777179191793,
+      "lastAccessed": 1777352497443,
       "keyFiles": [
         "favicon.svg",
         "icons.svg",
@@ -107,7 +107,7 @@
       "path": "docs",
       "purpose": "Documentation",
       "fileCount": 2,
-      "lastAccessed": 1777179191795,
+      "lastAccessed": 1777352497445,
       "keyFiles": [
         "DOPPLER.md",
         "TEAM_ONBOARDING.md"
@@ -116,19 +116,20 @@
     "e2e": {
       "path": "e2e",
       "purpose": null,
-      "fileCount": 3,
-      "lastAccessed": 1777179191818,
+      "fileCount": 4,
+      "lastAccessed": 1777352497512,
       "keyFiles": [
         "fixtures.ts",
         "home.spec.ts",
-        "profile.spec.ts"
+        "profile.spec.ts",
+        "test-create.spec.ts"
       ]
     },
     "public": {
       "path": "public",
       "purpose": "Public files",
       "fileCount": 2,
-      "lastAccessed": 1777179191819,
+      "lastAccessed": 1777352497528,
       "keyFiles": [
         "favicon.svg",
         "icons.svg"
@@ -138,7 +139,7 @@
       "path": "src",
       "purpose": "Source code",
       "fileCount": 6,
-      "lastAccessed": 1777179191819,
+      "lastAccessed": 1777352497529,
       "keyFiles": [
         "App.css",
         "App.tsx",
@@ -151,14 +152,14 @@
       "path": "test-results",
       "purpose": null,
       "fileCount": 1,
-      "lastAccessed": 1777179191820,
+      "lastAccessed": 1777352497531,
       "keyFiles": []
     },
     "dist/assets": {
       "path": "dist/assets",
       "purpose": "Static assets",
       "fileCount": 2,
-      "lastAccessed": 1777179191822,
+      "lastAccessed": 1777352497545,
       "keyFiles": [
         "index-BKZpACbR.js",
         "index-C6QjICAY.css"
@@ -168,7 +169,7 @@
       "path": "src/assets",
       "purpose": "Static assets",
       "fileCount": 3,
-      "lastAccessed": 1777179191824,
+      "lastAccessed": 1777352497546,
       "keyFiles": [
         "hero.png",
         "react.svg",
@@ -179,7 +180,7 @@
       "path": "src/routes",
       "purpose": "Route handlers",
       "fileCount": 3,
-      "lastAccessed": 1777179191824,
+      "lastAccessed": 1777352497546,
       "keyFiles": [
         "__root.tsx",
         "index.tsx",
@@ -190,86 +191,26 @@
   "hotPaths": [
     {
       "path": "src/features/test-create/ui/TestCreateFunnel.tsx",
-      "accessCount": 56,
-      "lastAccessed": 1777260955565,
-      "type": "file"
-    },
-    {
-      "path": "src/features/test-create/ui/TestImageStep.tsx",
-      "accessCount": 22,
-      "lastAccessed": 1777263498348,
+      "accessCount": 15,
+      "lastAccessed": 1777353395535,
       "type": "file"
     },
     {
       "path": "src/features/test-create/ui/ServiceDescriptionStep.tsx",
-      "accessCount": 12,
-      "lastAccessed": 1777260955528,
-      "type": "file"
-    },
-    {
-      "path": "src/features/test-create/ui/FunnelLayout.tsx",
-      "accessCount": 11,
-      "lastAccessed": 1777261327107,
-      "type": "file"
-    },
-    {
-      "path": "src/features/test-create/ui/ServiceDescriptionNudgeSheet.tsx",
-      "accessCount": 8,
-      "lastAccessed": 1777256666104,
-      "type": "file"
-    },
-    {
-      "path": "src/features/test-create/model/types.ts",
-      "accessCount": 4,
-      "lastAccessed": 1777202604268,
-      "type": "file"
-    },
-    {
-      "path": "src/features/test-create/model/useTestCreateForm.ts",
-      "accessCount": 3,
-      "lastAccessed": 1777202617727,
+      "accessCount": 2,
+      "lastAccessed": 1777352920235,
       "type": "file"
     },
     {
       "path": "src/features/test-create/ui/PhotoSelectSheet.tsx",
-      "accessCount": 3,
-      "lastAccessed": 1777263199328,
-      "type": "file"
-    },
-    {
-      "path": "granite.config.ts",
-      "accessCount": 2,
-      "lastAccessed": 1777202899279,
-      "type": "file"
-    },
-    {
-      "path": "src/index.css",
-      "accessCount": 2,
-      "lastAccessed": 1777259872240,
-      "type": "file"
-    },
-    {
-      "path": "src/features/test-create/model/useFunnel.ts",
       "accessCount": 1,
-      "lastAccessed": 1777202549965,
+      "lastAccessed": 1777353290403,
       "type": "file"
     },
     {
-      "path": "src/routes/profile/$userId.tsx",
+      "path": "src/features/test-create/ui/TestImageStep.tsx",
       "accessCount": 1,
-      "lastAccessed": 1777202838219,
-      "type": "file"
-    },
-    {
-      "path": "src/features/test-create/ui/ServiceIntroSheet.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1777203978219,
-      "type": "file"
-    },
-    {
-      "path": "src/features/test-create/ui/TestRegisterStep.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1777256705578,
+      "lastAccessed": 1777353372053,
       "type": "file"
     }
   ],

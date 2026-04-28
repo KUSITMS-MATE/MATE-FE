@@ -135,7 +135,7 @@ export function TestCreateFunnel() {
           }
         }}
         onNext={() => {
-          if (funnel.step === "service" && !form.description.trim()) {
+          if (funnel.step === "service" && form.serviceName.trim().length === 0) {
             setIsServiceIntroSheetOpen(true);
           } else {
             funnel.next();
@@ -150,12 +150,12 @@ export function TestCreateFunnel() {
         isConfirmDisabled={isConfirmDisabled}
         isNextDisabled={
           funnel.step === "service"
-            ? form.serviceName.trim().length === 0
+            ? false
             : funnel.step === "image"
               ? !hasTestImages
               : !isAllComplete
         }
-        cancelLabel={funnel.step === "service" ? "이전" : "취소"}
+        cancelLabel={funnel.step === "service" || funnel.step === "image" ? "이전" : "취소"}
         isSubmitDisabled
         submitLabel="테스트 만들기"
       >
@@ -243,7 +243,6 @@ export function TestCreateFunnel() {
         )}
       </AnimatePresence>
 
-      {/* 서비스 소개 유도 시트 */}
       <ServiceDescriptionNudgeSheet
         open={isServiceIntroSheetOpen}
         onClose={() => setIsServiceIntroSheetOpen(false)}
