@@ -1,22 +1,18 @@
 import { TestQuestionCreateTopSection } from "@/shared/ui/TestQuestionCreateTopSection";
 
-interface ScaleCreateTopSectionProps {
+interface AbCreateTopSectionProps {
   questionTitle: string;
   questionDescription: string;
   onOpenQuestionEditor: () => void;
 }
 
-export function ScaleCreateTopSection({
-  questionTitle,
-  questionDescription,
-  onOpenQuestionEditor,
-}: ScaleCreateTopSectionProps) {
+export function AbCreateTopSection({ questionTitle, questionDescription, onOpenQuestionEditor }: AbCreateTopSectionProps) {
   return (
     <TestQuestionCreateTopSection
       questionTitle={questionTitle}
       questionDescription={questionDescription}
       onOpenQuestionEditor={onOpenQuestionEditor}
-      subtitle="척도"
+      subtitle="A/B 테스트"
     />
   );
 }
