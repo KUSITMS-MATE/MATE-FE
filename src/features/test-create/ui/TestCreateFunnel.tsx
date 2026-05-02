@@ -19,6 +19,7 @@ import { useTestCreateForm } from "../model/useTestCreateForm";
 import type { EditPhase, QuestionTypeId } from "../model/types";
 import { ROUTES } from "@/shared/constants/routes";
 import { MultipleCreatePage } from "@/features/test-multiple/ui";
+import { ScaleCreatePage } from "@/features/test-scale/ui";
 
 export function TestCreateFunnel() {
   const navigate = useNavigate();
@@ -250,7 +251,9 @@ export function TestCreateFunnel() {
           <MultipleCreatePage key="question-multiple" questionId={activeQuestion.id} onClose={() => setActiveQuestion(null)} />
         )}
         {activeQuestion?.typeId === "subjective" && <></>}
-        {activeQuestion?.typeId === "scale" && <></>}
+        {activeQuestion?.typeId === "scale" && (
+          <ScaleCreatePage key="question-scale" questionId={activeQuestion.id} onClose={() => setActiveQuestion(null)} />
+        )}
         {activeQuestion?.typeId === "ab" && <></>}
         {activeQuestion?.typeId === "card" && <></>}
         {activeQuestion?.typeId === "tree" && <></>}
