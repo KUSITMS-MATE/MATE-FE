@@ -4,6 +4,7 @@ import { Asset, Border } from "@toss/tds-mobile";
 import { adaptive } from "@toss/tds-colors";
 import { useTestCreateForm } from "@/features/test-create/model/useTestCreateForm";
 import { QuestionCreateTopSection } from "@/features/test-create/ui/QuestionCreateTopSection";
+import { TesterPreviewListRow } from "@/features/test-create/ui/TesterPreviewListRow";
 import { ScaleCreateBottomCTA } from "./ScaleCreateBottomCTA";
 import { ScaleCreateOptionSection } from "./ScaleCreateOptionSection";
 import { ScaleQuestionEditorOverlay } from "./ScaleQuestionEditorOverlay";
@@ -103,6 +104,7 @@ export function ScaleCreatePage({ questionId, onClose }: ScaleCreatePageProps) {
           )
         }
       />
+      <TesterPreviewListRow />
       <ScaleCreateOptionSection
         scaleCount={scaleCount}
         minLabel={minLabel}
